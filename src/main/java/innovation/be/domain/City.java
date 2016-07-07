@@ -1,5 +1,7 @@
 package innovation.be.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 
 public class City {
@@ -11,7 +13,8 @@ public class City {
 
     private int offset;
 
-    public City(String name, int offset) {
+    @JsonCreator
+    public City(@JsonProperty("name") String name, @JsonProperty("offset") int offset) {
         this.name = name;
         this.offset = offset;
     }

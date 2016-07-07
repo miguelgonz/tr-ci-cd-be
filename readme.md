@@ -1,22 +1,58 @@
-### Endpoints
+## Endpoints
 
+### Time
+Endpoint:
 `/time`
+Response
+```json
+{
+  "timestamp": 1467900957
+}
+```
 
-Returns the current time
-
+### Time for a city
+Endpoint:
 `/time?city={cityName}`
+Response
+```json
+{
+  "timestamp": 1467900957,
+  "name": "London",
+  "offset": 0
+}
+```
 
-Returns the time for a city
-
+### Time for all cities
+Endpoint:
 `/times`
+Response:
+```json
+{
+  "timestamp": 1467900957,
+  "cities": [
+    {"name": "London", "offset": 0},
+    {"name": "Madrid", "offset": 60},
+    {"name": "Azores", "offset": -60}
+  ]
+}
+```
 
-Returns a map of times for all cities
-
+### List of cities
+Endpoint:
 `/cities`
+Response:
+```json
+{
+  "cities": [
+    "London", "Madrid", "Azores"
+  ]
+}
+```
+
 
 Base REST endpoint for cities
 
-### Configuraiton
+### Configuration
 
 By default will attempt to connect to MongoDB on `mongodb://localhost/test`.  The `spring.data.mongodb.uri` system
 property can be used to alter this.

@@ -19,16 +19,10 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        cityRepository.deleteAll();
 
-        try {
-            cityRepository.deleteAll();
-
-            // save a couple of customers
-            cityRepository.save(new City("Nottingham", 0));
-            cityRepository.save(new City("Paris", 1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        cityRepository.save(new City("Nottingham", 0));
+        cityRepository.save(new City("Paris", 1));
     }
 
 }

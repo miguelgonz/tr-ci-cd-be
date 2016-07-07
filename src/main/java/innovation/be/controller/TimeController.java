@@ -1,5 +1,6 @@
 package innovation.be.controller;
 
+import com.google.common.collect.ImmutableMap;
 import innovation.be.domain.City;
 import innovation.be.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,16 +23,19 @@ public class TimeController {
 
     @ResponseBody
     @RequestMapping("/time")
-    public String getTime(@RequestParam(name = "city", required = false) String cityName) {
-        int offset = 0;
+    public Map<String, Object> getTime(@RequestParam(name = "city", required = false) String cityName) {
+        Map<String, Object> response = new HashMap<>();
 
         if (cityName != null) {
             City city = cityRepository.findByName(cityName);
-            offset = city.getOffset();
-
+            response.put("timestamp", getOffsetTime(System.currentTimeMillis(), city.getOffset()));
+            response.put("name", city.getName());
+            response.put("offset", city.getOffset());
+        } else {
+            response.put("timestamp", System.currentTimeMillis());
         }
 
-        return String.valueOf(getOffsetTime(System.currentTimeMillis(), offset));
+        return response;
     }
 
     @ResponseBody

@@ -1,6 +1,5 @@
 package innovation.be;
 
-import innovation.be.domain.City;
 import innovation.be.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,8 +18,6 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        cityRepository.save(new City("Nottingham", 0));
-        cityRepository.save(new City("Paris", 1));
     }
 
 }

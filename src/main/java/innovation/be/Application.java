@@ -19,8 +19,6 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        cityRepository.deleteAll();
-
         cityRepository.save(new City("Nottingham", 0));
         cityRepository.save(new City("Paris", 1));
     }
